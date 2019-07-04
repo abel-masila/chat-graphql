@@ -1,4 +1,8 @@
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
 const { buildSchema, graphql } = require("graphql");
+
+const app = express();
 
 const db = {
   users: [
@@ -39,17 +43,12 @@ const rootValue = {
   users: () => db.users
 };
 
-graphql(
-  schema,
-  `
-    {
-      users {
-        id
-        email
-      }
-    }
-  `,
-  rootValue
-)
-  .then(res => console.dir(res, { depth: null }))
-  .catch(console.error);
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    rootValue,
+    graphiql: true
+  })
+);
+app.listen(3000, () => console.log("Listening on 3000"));
