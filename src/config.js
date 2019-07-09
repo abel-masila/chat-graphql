@@ -1,0 +1,9 @@
+export const {
+  APP_PORT = 4000,
+  NODE_ENV = "development",
+  DB_USERNAME = "admin",
+  DB_PASSWORD = "admin123",
+  DB_HOST = "ds249267.mlab.com",
+  DB_PORT = "49267",
+  DB_NAME = "chat"
+} = process.env;
