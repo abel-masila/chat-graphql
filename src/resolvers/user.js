@@ -22,6 +22,7 @@ export default {
     signUp: (root, args, context, info) => {
       //TODO Make sure one is  Not Authenticated, data validation create user
       //console.log(args);
+      //const password = args.password;
       return User.create(args);
     }
   }

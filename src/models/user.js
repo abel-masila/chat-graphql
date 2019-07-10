@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { hash } from "bcryptjs";
 const userSchema = new mongoose.Schema(
   {
     email: String,
@@ -10,4 +11,15 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 );
+
+userSchema.pre("save", async function(next) {
+  if (this.isModified("password")) {
+    try {
+      this.password = await hash(this.password, 10);
+    } catch (e) {
+      next(e);
+    }
+  }
+  next();
+});
 export default mongoose.model("User", userSchema);
