@@ -9,7 +9,8 @@ import {
   DB_NAME,
   DB_PASSWORD,
   DB_PORT,
-  DB_USERNAME
+  DB_USERNAME,
+  NODE_ENV
 } from "./config";
 
 (async () => {
